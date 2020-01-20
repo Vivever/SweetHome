@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "989616103737",
+    "firebase_url": "https://homeless-4591d.firebaseio.com",
+    "project_id": "homeless-4591d",
+    "storage_bucket": "homeless-4591d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989616103737:android:40c55f4e2e0655b462c8e8",
+        "android_client_info": {
+          "package_name": "com.example.home"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989616103737-9v2ngogk4t224m2h29t8qk24h41qsb3t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.home",
+            "certificate_hash": "4a5b86e495a72536de51bb1e32aad2dc898fd8f8"
+          }
+        },
+        {
+          "client_id": "989616103737-kraerlh35igpto80eu99juv0cdgpbm9j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA54bG9xx_f1KBW_A30B7fmTfcsEWi3YUc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989616103737-kraerlh35igpto80eu99juv0cdgpbm9j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
