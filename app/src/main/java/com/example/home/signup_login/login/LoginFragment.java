@@ -1,16 +1,8 @@
 package com.example.home.signup_login.login;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,17 +11,22 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 import com.example.home.GlobalVar;
 import com.example.home.MainActivity;
 import com.example.home.R;
 import com.example.home.signup_login.User;
-import com.example.home.ui.profile.ProfileObject;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment  {
 
     private LoginViewModel loginViewModel;
     private EditText userEmail,password;
@@ -74,6 +71,14 @@ public class LoginFragment extends Fragment {
 
             }
         });
+        signUp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please Swap Right",Toast.LENGTH_LONG).show();
+//                Fragment fragment=new SignUpFragment();
+//                Objects.requireNonNull(getActivity()).getSupportFragmentManager().beginTransaction().replace(R.id.pager,fragment);
+            }
+        });
         return root;
     }
 
@@ -101,6 +106,7 @@ public class LoginFragment extends Fragment {
         }
         return true;
     }
+
     private void findViewById(View root){
         userEmail=root.findViewById(R.id.log_in_user_email);
         password=root.findViewById(R.id.log_in_password);

@@ -84,6 +84,12 @@ public class SignUpFragment extends Fragment {
                 });
             }
         });
+        logIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Please swap Left",Toast.LENGTH_LONG).show();
+            }
+        });
         return root;
     }
 

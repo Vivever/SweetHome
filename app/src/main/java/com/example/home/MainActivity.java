@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -22,14 +22,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Objects;
 
 
 public class MainActivity extends AppCompatActivity{
-
-    public Toolbar toolbar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +39,6 @@ public class MainActivity extends AppCompatActivity{
         setSupportActionBar(GlobalVar.toolbar);
         if (GlobalVar.mDataBase==null)
             FirebaseDatabase.getInstance().setPersistenceEnabled(true);
-        // Passing each menu ID as a set of Ids because each
-        // menu should be considered as top level destinations.
         setGlobalVariables();
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_home, R.id.navigation_search,R.id.navigation_new_post, R.id.navigation_notifications,R.id.navigation_profile)
@@ -52,31 +49,27 @@ public class MainActivity extends AppCompatActivity{
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu, this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.tool_bar_menu, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.sign_out: {
-                if(GlobalVar.currUser!=null) {
-                    FirebaseAuth.getInstance().signOut();
-                    Toast.makeText(this, "You have been signed out from your account", Toast.LENGTH_LONG).show();
-                    GlobalVar.currUser = FirebaseAuth.getInstance().getCurrentUser();
-                    return true;
-                }
-                else
-                    Toast.makeText(this,"You are not logged in.",Toast.LENGTH_SHORT).show();
-            }
-//            case R.id.setting:{
-//                return  true;
-//            }
-            default:return super.onOptionsItemSelected(item);
+        if (item.getItemId() == R.id.sign_out) {
+            if (GlobalVar.currUser != null) {
+                FirebaseAuth.getInstance().signOut();
+                Toast.makeText(this, "You have been signed out from your account", Toast.LENGTH_LONG).show();
+                GlobalVar.currUser = FirebaseAuth.getInstance().getCurrentUser();
+                return true;
+            } else
+                Toast.makeText(this, "You are not logged in.", Toast.LENGTH_SHORT).show();
         }
+        return super.onOptionsItemSelected(item);
     }
+
+
     void setGlobalVariables(){
+        dummyPost();
         GlobalVar.calendar= Calendar.getInstance();
         GlobalVar.currUser=FirebaseAuth.getInstance().getCurrentUser();
         GlobalVar.mAuth=FirebaseAuth.getInstance();
@@ -104,8 +97,7 @@ public class MainActivity extends AppCompatActivity{
             GlobalVar.currUserDataBaseRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    User user= dataSnapshot.child("UserInfo").getValue(User.class);
-                    GlobalVar.currentUserData=user;
+                    GlobalVar.currentUserData= dataSnapshot.child("UserInfo").getValue(User.class);
 //                    key= Objects.requireNonNull(user).getNoOfPost();
 //                    name=user.getUserName();
                 }
@@ -116,5 +108,8 @@ public class MainActivity extends AppCompatActivity{
             });
 
         }
+    }
+    private void dummyPost(){
+        GlobalVar.currUserPosts.add(new PostObject("UserName","This is dummy Post , You can add new Post by clicking +","","","",new ArrayList<String>()));
     }
 }

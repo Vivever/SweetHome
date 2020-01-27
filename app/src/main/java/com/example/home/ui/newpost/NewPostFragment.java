@@ -84,11 +84,11 @@ public class NewPostFragment extends Fragment implements View.OnClickListener {
 //                Toast.makeText(getActivity(),"Your Post can not be updated, Please try again",Toast.LENGTH_LONG).show();
 //            }
 //        });
-//        if(GlobalVar.currentUserData!=null) {
+        if(GlobalVar.currentUserData!=null) {
             key = GlobalVar.currentUserData.getNoOfPost();
             name = GlobalVar.currentUserData.getUserName();
             userName.setText(name);
-
+        }
         sendPost.setOnClickListener(this);
         camera.setOnClickListener(this);
         return root;
